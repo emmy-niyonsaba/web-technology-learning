@@ -2,17 +2,31 @@
 <?php
 
 $host = "localhost";
-$dbname = "";
+$dbname = "student_db";
 $username = "root";
 $password = "";
 
-$connection = new PDO(
-"mysql:host=$host;dbname=$dbname",
-$username,
-$password
-);
+
+    $connection = new PDO(
+        "mysql:host=$host;dbname=$dbname",
+        $username,
+        $password
+    );
+
+    $sql = "INSERT INTO student_info (id, name, email)
+            VALUES (?, ?, ?)";
 
 
-echo "Connected to the database successfully!";
+    $statement = $connection->prepare($sql);
+
+    $statement->execute([
+        2,
+        "Emmanuel",
+        "emmanuel@gmail.com"
+    ]);
+
+    echo "Student inserted successfully!";
+
+
 
 ?>
